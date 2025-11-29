@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>แน่จริงกดฉันให้โดนสิ</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: darkblue;
+    color: #fff;
+    font-family: Arial;
+    overflow: hidden;
+  }
+
+  #box {
+    width: 80px;
+    height: 80px;
+    background: whitesmoke;
+    border-radius: 10px;
+    position: absolute;
+    cursor: pointer;
+    transition: 0.15s;
+  }
+
+  h1 {
+    position: fixed;
+    top: 20px;
+    font-size: 24px;
+  }
+</style>
+</head>
+<body>
+
+<h1>คะแนน: <span id="score">0</span></h1>
+<div id="box"></div>
+
+<script>
+  const box = document.getElementById("box");
+  const scoreText = document.getElementById("score");
+  let score = 0;
+
+  // ฟังก์ชันสุ่มตำแหน่ง
+  function moveBox() {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 100);
+    box.style.left = x + "px";
+    box.style.top = y + "px";
+  }
+
+  box.addEventListener("click", () => {
+    score++;
+    scoreText.textContent = score;
+    moveBox();
+  });
+
+  // กล่องขยับทุก 1 วินาทีเอง
+  setInterval(moveBox, 1000);
+
+  moveBox();
+</script>
+
+</body>
+</html>
